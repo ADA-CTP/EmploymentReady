@@ -70,6 +70,7 @@ class Model_Input:
 
         # Parse tools
         tools_list = self.tools.split(',')
+        tools_list = [tool.strip() for tool in tools_list]
         for tool in map(str.lower, tools_list):
             if tool in code_language_input:
                 code_language_input[tool] = 1

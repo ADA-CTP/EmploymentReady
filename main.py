@@ -3,7 +3,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import pickle  
+from joblib import load
+from employment import Model_Input, UNEMPLOYMENTMODEL
 
 df = pd.read_csv("jobapplicants.csv")
 sns.set()
@@ -38,72 +39,69 @@ def get_value(val,my_dict):
 
 app_mode = st.sidebar.selectbox('Select Page',['Home','Prediction']) #two pages
 
-if app_mode == 'Home':
+if app_mode == 'Job Applicants Dataset':
     st.checkbox("Use container width", value=False, key="use_container_width")
     st.dataframe(df,use_container_width=st.session_state.use_container_width)
     st.dataframe(hold, use_container_width=st.session_state.use_container_width)
-elif app_mode == 'Prediction':   
+elif app_mode == 'Prediction Model':   
     st.subheader('Please enter all necessary informations to calculate your employability as a Software Developer!')    
     st.sidebar.header("Input your information here:")    
     
     gender_dict = {"Male":0,"Female":1,"Non-Binary":2} 
     gender=st.sidebar.radio('Gender',tuple(gender_dict.keys())) 
-    st.markdown('''Gender: **:blue[{}]**'''.format(gender))
+    st.markdown(f'Gender: **:blue[{gender}]**')
+    gender = gender_dict[gender]
 
     age_dict = {"Older than 35":0,"Younger than 35":1} 
     age=st.sidebar.radio('Age',tuple(age_dict.keys())) 
-    st.markdown('Age: **:blue[{}]**'''.format(age))
+    st.markdown(f'Age: **:blue[{age}]**')
+    age = age_dict[age]
 
     accessibility_dict = {"No":0,"Yes":1} 
     accessibility=st.sidebar.radio('Any disabilities?',tuple(accessibility_dict.keys())) 
-    st.markdown('Accessibility: **:blue[{}]**'''.format(accessibility))
+    st.markdown(f'Accessibility: **:blue[{accessibility}]**')
+    accessibility = accessibility_dict[accessibility]
 
     employment_dict = {"No":0,"Yes":1} 
     employment=st.sidebar.radio('Current Employed?',tuple(employment_dict.keys())) 
-    st.markdown('Employment Status: **:blue[{}]**'''.format(employment))
+    st.markdown(f'Employment Status: **:blue[{employment}]**')
+    employment = employment_dict[employment]
 
     mental_health_dict = {"No":0,"Yes":1} 
     mental_health=st.sidebar.radio('Mental Health Issues?',tuple(mental_health_dict.keys())) 
-    st.markdown('Mental Health: **:blue[{}]**'''.format(mental_health))
+    st.markdown(f'Mental Health: **:blue[{mental_health}]**')
+    mental_health = mental_health_dict[mental_health]
 
     main_branch_dict = {"Non-Developer":0,"Developer":1} 
     main_branch=st.sidebar.radio('Are you a Developer?',tuple(main_branch_dict.keys())) 
-    st.markdown('Developer: **:blue[{}]**'''.format(main_branch))
+    st.markdown(f'Developer: **:blue[{main_branch}]**')
+    main_branch = main_branch_dict[main_branch]
 
     years_code=st.sidebar. slider('Years of Coding?',0,50,0,)  
-    st.markdown('Years of Coding: **:blue[{}]**'''.format(years_code))
+    st.markdown(f'Years of Coding: **:blue[{years_code}]**')
 
     years_code_pro=st.sidebar.slider('Years of Coding Professionally?',0,50,0,)  
-    st.markdown('Years of Coding Professionally: **:blue[{}]**'''.format(years_code_pro))
+    st.markdown(f'Years of Coding Professionally: **:blue[{years_code_pro}]**')
 
     prev_salary=st.sidebar.number_input('Most Recent Annual Salary?',value=0,step=1)  
-    st.markdown('Most Recent Annual Salary: **:blue[{}]**'''.format(prev_salary))
+    st.markdown(f'Most Recent Annual Salary: **:blue[{prev_salary}]**')
 
-    st.sidebar.markdown('Education Level?') 
-    edu_lvl_nohighered=st.sidebar.checkbox('No Higher Education') 
-    edu_lvl_undergrad=st.sidebar.checkbox('Undergraduate') 
-    edu_lvl_master=st.sidebar.checkbox('Master') 
-    edu_lvl_phd=st.sidebar.checkbox('PHD') 
-    edu_lvl_other=st.sidebar.checkbox('Other')
-    education = []
-    if edu_lvl_nohighered:
-        education.append('No Higher Education')
-    if edu_lvl_undergrad:
-        education.append('Undergraduate')  
-    if edu_lvl_master:
-        education.append('Master')  
-    if edu_lvl_phd:
-        education.append('PHD')  
-    if edu_lvl_other:
-        education.append('Other')     
-    education = ', '.join(education) 
-    st.write('Education Level: **:blue[{}]**'''.format(education))
+    ed_level_dict = {'No Higher Education':'edlevel_nohighered','Undergraduate':'edlevel_other','Master':'edlevel_master','PHD':'edlevel_phd','Other':'edlevel_other'} 
+    education=st.sidebar.radio('Highest Employment Level?',tuple(ed_level_dict.keys())) 
+    st.markdown(f'Highest Education Level: **:blue[{education}]**')
+    education = ed_level_dict[education]
 
-    tech=st.sidebar.text_area('Technologies (please separate with commas thank you):')
-    st.markdown('Technologies: **:blue[{}]**'''.format(tech))
-
-    code_language=st.sidebar.text_area('Coding Languages (please separate with commas thank you):')
-    st.markdown('Coding Languages: **:blue[{}]**'''.format(code_language))
+    tech=st.sidebar.text_area('Technologies & Coding Languages (please separate with commas thank you):')
+    st.markdown(f'Technologies & Coding Languages: **:blue[{tech}]**')
 
     st.subheader('Please confirm the information above before using our prediction model.')
-     #if st.button("Predict"):        file_ = open("6m-rain.gif", "rb")        contents = file_.read()        data_url = base64.b64encode(contents).decode("utf-8")        file_.close()        file = open("green-cola-no.gif", "rb")        contents = file.read()        data_url_no = base64.b64encode(contents).decode("utf-8")        file.close()        loaded_model = pickle.load(open('Random_Forest.sav', 'rb'))        prediction = loaded_model.predict(single_sample)        if prediction[0] == 0 :            st.error(    'According to our Calculations, you will not get the loan from Bank'    )            st.markdown(    f'<img src="data:image/gif;base64,{data_url_no}" alt="cat gif">',    unsafe_allow_html=True,)        elif prediction[0] == 1 :            st.success(    'Congratulations!! you will get the loan from Bank'    )            st.markdown(    f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">',    unsafe_allow_html=True,    )
+    # feature_list = [gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech]
+    # st.write(feature_list)
+
+    if st.button("Predict!"):        
+        user_input = Model_Input(gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech).run()        
+        prediction_model = UNEMPLOYMENTMODEL('./model/gradientboost.joblib',user_input)
+        st.markdown(f'**:violet[{prediction_model.predict()}]**')
+        st.markdown(f'Chance of Being Employed: **:violet[{prediction_model.proba()*100:.2f}%]**')
+        st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model.recommend_skills()}]**')
+
