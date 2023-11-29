@@ -25,19 +25,7 @@ hold = pd.get_dummies(hold,columns=['EdLevel'],drop_first=False)
 hold = hold.drop('HaveWorkedWith', axis=1).join(df['HaveWorkedWith'].str.get_dummies(sep=';'))
 
 
-# testing out widgets for sidebar menu
-@st.cache(suppress_st_warning=True)
-def get_fvalue(val):    
-    feature_dict = {"No":1,"Yes":2}    
-    for key,value in feature_dict.items():        
-        if val == key:            
-            return value
-def get_value(val,my_dict):    
-    for key,value in my_dict.items():        
-        if val == key:            
-            return value
-
-app_mode = st.sidebar.selectbox('Select Page',['Home','Prediction']) #two pages
+app_mode = st.sidebar.selectbox('Select Page',['Job Applicants Dataset','Prediction Model']) #two pages
 
 if app_mode == 'Job Applicants Dataset':
     st.checkbox("Use container width", value=False, key="use_container_width")
@@ -98,10 +86,26 @@ elif app_mode == 'Prediction Model':
     # feature_list = [gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech]
     # st.write(feature_list)
 
-    if st.button("Predict!"):        
-        user_input = Model_Input(gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech).run()        
-        prediction_model = UNEMPLOYMENTMODEL('./model/gradientboost.joblib',user_input)
-        st.markdown(f'**:violet[{prediction_model.predict()}]**')
-        st.markdown(f'Chance of Being Employed: **:violet[{prediction_model.proba()*100:.2f}%]**')
-        st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model.recommend_skills()}]**')
+    if st.button("PREDICT"):        
+        user_input_1 = Model_Input(gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech).run()        
+        prediction_model_1 = UNEMPLOYMENTMODEL('./model/gradientboost.joblib',user_input_1)
+        st.markdown(f'**:violet[{prediction_model_1.predict()}]**')
+        st.markdown(f'Chance of Being Employed: **:violet[{prediction_model_1.proba()*100:.2f}%]**')
+        proba_1 = prediction_model_1.proba()
+        st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_1.recommend_skills()}]**')
+        
+        # if st.button("UPDATE"):        
+        #     user_input_2 = Model_Input(gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech).run()        
+        #     prediction_model_2 = UNEMPLOYMENTMODEL('./model/gradientboost.joblib',user_input_2)
+        #     st.markdown(f'**:violet[{prediction_model_2.predict()}]**')
+        #     st.markdown(f'Chance of Being Employed: **:violet[{prediction_model_2.proba()*100:.2f}%]**')
+        #     proba_2 = prediction_model_2.proba()
+        #     print('anything')
+        #     if user_input_1 != user_input_2:
+        #         print('diff inputs')
+        #         if proba_2 >= proba_1:
+        #             st.markdown(f'Increased Chances by: **:violet[{(proba_2-proba_1)*100:.2f}%]**')
+        #         else:
+        #             st.markdown(f'Decreased Chances by: **:violet[{(proba_2-proba_1)*100:.2f}%]**')
+        #     st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_2.recommend_skills()}]**')
 

@@ -132,11 +132,11 @@ class UNEMPLOYMENTMODEL:
         return recommended_skills[:5]
         
 
-m_input = Model_Input(1,1,1,1,1,1,9999999,9999999,9999999,"edlevel_other","c++,C#,node.js,typescript").run()
-model = UNEMPLOYMENTMODEL('./model/gradientboost.joblib',m_input)
-print(model.recommend_skills())
-print(model.predict())
-print("Chances of being employed:",model.proba())
+# m_input = Model_Input(1,1,1,1,1,1,9999999,9999999,9999999,"edlevel_other","c++,C#,node.js,typescript").run()
+# model = UNEMPLOYMENTMODEL('./model/gradientboost.joblib',m_input)
+# print(model.recommend_skills())
+# print(model.predict())
+# print("Chances of being employed:",model.proba())
 # print(model.feature_importances()) 
 
 
