@@ -94,18 +94,8 @@ elif app_mode == 'Prediction Model':
         proba_1 = prediction_model_1.proba()
         st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_1.recommend_skills()}]**')
         
-        # if st.button("UPDATE"):        
-        #     user_input_2 = Model_Input(gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech).run()        
-        #     prediction_model_2 = UNEMPLOYMENTMODEL('./model/gradientboost.joblib',user_input_2)
-        #     st.markdown(f'**:violet[{prediction_model_2.predict()}]**')
-        #     st.markdown(f'Chance of Being Employed: **:violet[{prediction_model_2.proba()*100:.2f}%]**')
-        #     proba_2 = prediction_model_2.proba()
-        #     print('anything')
-        #     if user_input_1 != user_input_2:
-        #         print('diff inputs')
-        #         if proba_2 >= proba_1:
-        #             st.markdown(f'Increased Chances by: **:violet[{(proba_2-proba_1)*100:.2f}%]**')
-        #         else:
-        #             st.markdown(f'Decreased Chances by: **:violet[{(proba_2-proba_1)*100:.2f}%]**')
-        #     st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_2.recommend_skills()}]**')
+        if st.button("UPDATE"):        
+            user_input_2 = Model_Input(gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech).run()        
+            st.markdown(f'**:violet[{prediction_model_1.improvement_prediction(user_input_2)}]**')
+            st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_1.model.improvement_recommend_skills()}]**')
 
