@@ -94,8 +94,8 @@ elif app_mode == 'Prediction Model':
         proba_1 = prediction_model_1.proba()
         st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_1.recommend_skills()}]**')
         
-        if st.button("UPDATE"):        
-            user_input_2 = Model_Input(gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech).run()        
-            st.markdown(f'**:violet[{prediction_model_1.improvement_prediction(user_input_2)}]**')
-            st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_1.model.improvement_recommend_skills()}]**')
+        # if st.button("UPDATE"):        
+        #     user_input_2 = Model_Input(gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech).run()        
+        #     st.markdown(f'**:violet[{prediction_model_1.improvement_prediction(user_input_2)}]**')
+        #     st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_1.model.improvement_recommend_skills()}]**')
 
