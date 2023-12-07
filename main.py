@@ -1,12 +1,7 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 import seaborn as sns
-from joblib import load
 from employment import Model_Input, UNEMPLOYMENTMODEL
-import geopandas as gpd
-import folium
 import plotly.express as px
 
 df = pd.read_csv("jobapplicants.csv")
@@ -78,8 +73,8 @@ elif app_mode == 'Visuals':
     dev_or_not = df['MainBranch'].value_counts().reset_index()
     dev_or_not.columns = ['Developer?', "Number of Applicants"]
 
-    dev_or_not['Developer?'][0] = 'Yes'
-    dev_or_not['Developer?'][1] = 'No'
+    dev_or_not['Developer?'][0] = 'Developer'
+    dev_or_not['Developer?'][1] = 'Non-Developer'
 
 
     fig2 = px.pie(dev_or_not, names='Developer?', values='Number of Applicants', title='Developer Distribution')
