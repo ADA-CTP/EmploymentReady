@@ -5,10 +5,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from joblib import load
 from employment import Model_Input, UNEMPLOYMENTMODEL
-# import geopandas as gpd
-
-with open('cache.txt', 'w') as file:
-    pass
+import geopandas as gpd
+import folium
+import plotly.express as px
 
 df = pd.read_csv("jobapplicants.csv")
 sns.set()
@@ -28,6 +27,14 @@ hold = df.copy()
 hold = pd.get_dummies(hold,columns=['EdLevel'],drop_first=False)
 hold = hold.drop('HaveWorkedWith', axis=1).join(df['HaveWorkedWith'].str.get_dummies(sep=';'))
 
+matrix = hold.iloc[:, 18:] #technology matrix
+ones_count = {}
+for column in matrix.columns:
+    ones_count[column] = matrix[column].sum()
+
+sorted_dict = pd.DataFrame.from_dict([dict(reversed(sorted(ones_count.items(), key=lambda item: item[1])))])
+sorted_dict = sorted_dict.melt()
+
 
 app_mode = st.sidebar.selectbox('Select Page',['Job Applicants Dataset', 'Visuals', 'Prediction Model']) #two pages
 
@@ -36,7 +43,70 @@ if app_mode == 'Job Applicants Dataset':
     st.dataframe(df,use_container_width=st.session_state.use_container_width)
     st.dataframe(hold, use_container_width=st.session_state.use_container_width)
 elif app_mode == 'Visuals':
-    st.button("something")
+
+    country_counts = df['Country'].value_counts().reset_index()
+    country_counts.columns = ['Country', 'Number of Applicants']
+    # st.dataframe(country_counts)
+
+    fig = px.choropleth(country_counts, 
+                        locations='Country', 
+                        locationmode='country names',
+                        color='Number of Applicants',
+                        color_continuous_scale='YlGnBu',
+                        title='Number of Applicants by Country')
+    
+    # Display the Plotly figure in Streamlit
+    st.plotly_chart(fig, use_container_width=True)
+
+    # =========================================================================================================================
+
+    gender_counts = df['Gender'].value_counts().reset_index()
+    gender_counts.columns = ['Gender', 'Number of Applicants']
+
+    # st.dataframe(gender_counts)
+    gender_counts['Gender'][0]= 'Male'
+    gender_counts['Gender'][1]= 'Female'
+    gender_counts['Gender'][2]= 'Non-Binary'
+
+    fig1 = px.pie(gender_counts, names='Gender', values='Number of Applicants', title='Gender Distribution')
+
+    # Display the Plotly figure in Streamlit
+    st.plotly_chart(fig1)
+
+    # ===========================================================================================================
+
+    dev_or_not = df['MainBranch'].value_counts().reset_index()
+    dev_or_not.columns = ['Developer?', "Number of Applicants"]
+
+    dev_or_not['Developer?'][0] = 'Yes'
+    dev_or_not['Developer?'][1] = 'No'
+
+
+    fig2 = px.pie(dev_or_not, names='Developer?', values='Number of Applicants', title='Developer Distribution')
+
+    # Display the Plotly figure in Streamlit
+    st.plotly_chart(fig2)
+
+    # ===========================================================================================
+
+    education = df['EdLevel'].value_counts().reset_index()
+    # education.columns ["Education Level", 'Number of Applicants']
+
+    fig3 = px.pie(education, names='EdLevel', values='count', title='Education Distribution')
+
+    # Display the Plotly figure in Streamlit
+    st.plotly_chart(fig3)
+
+    #===================================================================================================================
+
+    technologies = sorted_dict.copy()
+    technologies.columns = ['Technologies/Skills', 'Number of Applicants with Skill']
+
+    fig4 = px.bar(technologies, x='Technologies/Skills', y='Number of Applicants with Skill', title='Technology/Skill Distribution')
+
+    # Display the Plotly figure in Streamlit
+    st.plotly_chart(fig4)
+
 elif app_mode == 'Prediction Model':   
     st.subheader('Please enter all necessary informations to calculate your employability as a Software Developer!')    
     st.sidebar.header("Input your information here:")    
@@ -145,7 +215,3 @@ elif app_mode == 'Prediction Model':
         st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_1.improvement_recommend_skills()}]**')
 
         
-
-    # else:
-    #     st.stop()
-            # st.stop()
