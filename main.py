@@ -5,10 +5,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from joblib import load
 from employment import Model_Input, UNEMPLOYMENTMODEL
-# import geopandas as gpd
-
-with open('cache.txt', 'w') as file:
-    pass
+import geopandas as gpd
+import folium
+import plotly.express as px
 
 df = pd.read_csv("jobapplicants.csv")
 sns.set()
@@ -37,6 +36,21 @@ if app_mode == 'Job Applicants Dataset':
     st.dataframe(hold, use_container_width=st.session_state.use_container_width)
 elif app_mode == 'Visuals':
     st.button("something")
+
+    country_counts = df['Country'].value_counts().reset_index()
+    country_counts.columns = ['Country', 'Number of Applicants']
+    st.dataframe(country_counts)
+
+    fig = px.choropleth(country_counts, 
+                        locations='Country', 
+                        locationmode='country names',
+                        color='Number of Applicants',
+                        color_continuous_scale='YlGnBu',
+                        title='Value Counts by Country')
+
+    # Display the Plotly figure in Streamlit
+    st.plotly_chart(fig)
+
 elif app_mode == 'Prediction Model':   
     st.subheader('Please enter all necessary informations to calculate your employability as a Software Developer!')    
     st.sidebar.header("Input your information here:")    
@@ -145,7 +159,3 @@ elif app_mode == 'Prediction Model':
         st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_1.improvement_recommend_skills()}]**')
 
         
-
-    # else:
-    #     st.stop()
-            # st.stop()
