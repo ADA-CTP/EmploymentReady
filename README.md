@@ -35,7 +35,7 @@ ___
 *  Streamlit (build application to accept user input and output prediction of user employability using our model)
 *  Visual Studio Code & Python (code for Streamlit application and our model)
 *  Git & Github (to share code and collaborate)
-*  Python Libraries: streamlit, pandas, numpy, seaborn, plotly.express, matplotlib.pyploy, joblib, sklearn.metrics, sklearn.ensemble, sklearn.model_seelction
+*  Python Libraries: streamlit, pandas, numpy, seaborn, plotly.express, matplotlib.pyploy, joblib, sklearn.metrics, sklearn.ensemble, sklearn.model_selction
 
 ### Demo
 ___
