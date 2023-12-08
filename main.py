@@ -186,6 +186,7 @@ elif app_mode == 'Prediction Model':
         file.close()
     
 
+    st.subheader('Add skills to see how your employability chance changes.')
     if content is not '' and st.button("UPDATE"):    
         list_info = []    
         with open('cache.txt', 'r') as file:
