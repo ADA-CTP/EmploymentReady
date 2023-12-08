@@ -186,12 +186,7 @@ elif app_mode == 'Prediction Model':
         file.close()
     
 
-<<<<<<< Updated upstream
-    st.subheader('Add skills to see how your employability chance changes.')
-    if content is not '' and st.button("UPDATE"):    
-=======
     if content != '' and st.button("UPDATE"):    
->>>>>>> Stashed changes
         list_info = []    
         with open('cache.txt', 'r') as file:
             while True:
