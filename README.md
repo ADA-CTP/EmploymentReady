@@ -7,7 +7,7 @@ EmploymentReady contains a predictive model that predicts your employability for
 <details><summary>Table Of Contents</summary>
 
   *  [Project Description](https://github.com/ADA-Sleep-Analysis/EmploymentReady/blob/main/README.md#project-description)
-  *  [Design Strategy]
+  *  [Design Strategy](https://github.com/ADA-Sleep-Analysis/EmploymentReady/blob/main/README.md#design-strategy)
   *  [Demo]
   *  [Future Aspirations]
   *  [Contact]
