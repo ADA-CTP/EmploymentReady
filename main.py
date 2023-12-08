@@ -1,10 +1,8 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 import seaborn as sns
-from joblib import load
 from employment import Model_Input, UNEMPLOYMENTMODEL
+import plotly.express as px
 
 df = pd.read_csv("jobapplicants.csv")
 sns.set()
@@ -24,13 +22,86 @@ hold = df.copy()
 hold = pd.get_dummies(hold,columns=['EdLevel'],drop_first=False)
 hold = hold.drop('HaveWorkedWith', axis=1).join(df['HaveWorkedWith'].str.get_dummies(sep=';'))
 
+matrix = hold.iloc[:, 18:] #technology matrix
+ones_count = {}
+for column in matrix.columns:
+    ones_count[column] = matrix[column].sum()
 
-app_mode = st.sidebar.selectbox('Select Page',['Job Applicants Dataset','Prediction Model']) #two pages
+sorted_dict = pd.DataFrame.from_dict([dict(reversed(sorted(ones_count.items(), key=lambda item: item[1])))])
+sorted_dict = sorted_dict.melt()
+
+
+app_mode = st.sidebar.selectbox('Select Page',['Job Applicants Dataset', 'Visuals', 'Prediction Model']) #two pages
 
 if app_mode == 'Job Applicants Dataset':
     st.checkbox("Use container width", value=False, key="use_container_width")
     st.dataframe(df,use_container_width=st.session_state.use_container_width)
     st.dataframe(hold, use_container_width=st.session_state.use_container_width)
+elif app_mode == 'Visuals':
+
+    country_counts = df['Country'].value_counts().reset_index()
+    country_counts.columns = ['Country', 'Number of Applicants']
+    # st.dataframe(country_counts)
+
+    fig = px.choropleth(country_counts, 
+                        locations='Country', 
+                        locationmode='country names',
+                        color='Number of Applicants',
+                        color_continuous_scale='YlGnBu',
+                        title='Number of Applicants by Country')
+    
+    # Display the Plotly figure in Streamlit
+    st.plotly_chart(fig, use_container_width=True)
+
+    # =========================================================================================================================
+
+    gender_counts = df['Gender'].value_counts().reset_index()
+    gender_counts.columns = ['Gender', 'Number of Applicants']
+
+    # st.dataframe(gender_counts)
+    gender_counts['Gender'][0]= 'Male'
+    gender_counts['Gender'][1]= 'Female'
+    gender_counts['Gender'][2]= 'Non-Binary'
+
+    fig1 = px.pie(gender_counts, names='Gender', values='Number of Applicants', title='Gender Distribution')
+
+    # Display the Plotly figure in Streamlit
+    st.plotly_chart(fig1)
+
+    # ===========================================================================================================
+
+    dev_or_not = df['MainBranch'].value_counts().reset_index()
+    dev_or_not.columns = ['Developer?', "Number of Applicants"]
+
+    dev_or_not['Developer?'][0] = 'Developer'
+    dev_or_not['Developer?'][1] = 'Non-Developer'
+
+
+    fig2 = px.pie(dev_or_not, names='Developer?', values='Number of Applicants', title='Developer Distribution')
+
+    # Display the Plotly figure in Streamlit
+    st.plotly_chart(fig2)
+
+    # ===========================================================================================
+
+    education = df['EdLevel'].value_counts().reset_index()
+    # education.columns ["Education Level", 'Number of Applicants']
+
+    fig3 = px.pie(education, names='EdLevel', values='count', title='Education Distribution')
+
+    # Display the Plotly figure in Streamlit
+    st.plotly_chart(fig3)
+
+    #===================================================================================================================
+
+    technologies = sorted_dict.copy()
+    technologies.columns = ['Technologies/Skills', 'Number of Applicants with Skill']
+
+    fig4 = px.bar(technologies, x='Technologies/Skills', y='Number of Applicants with Skill', title='Technology/Skill Distribution')
+
+    # Display the Plotly figure in Streamlit
+    st.plotly_chart(fig4)
+
 elif app_mode == 'Prediction Model':   
     st.subheader('Please enter all necessary informations to calculate your employability as a Software Developer!')    
     st.sidebar.header("Input your information here:")    
@@ -86,26 +157,61 @@ elif app_mode == 'Prediction Model':
     # feature_list = [gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech]
     # st.write(feature_list)
 
+
     if st.button("PREDICT"):        
         user_input_1 = Model_Input(gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech).run()        
         prediction_model_1 = UNEMPLOYMENTMODEL('./model/gradientboost.joblib',user_input_1)
         st.markdown(f'**:violet[{prediction_model_1.predict()}]**')
         st.markdown(f'Chance of Being Employed: **:violet[{prediction_model_1.proba()*100:.2f}%]**')
-        proba_1 = prediction_model_1.proba()
+        prediction_model_1.proba()
         st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_1.recommend_skills()}]**')
-        
-        # if st.button("UPDATE"):        
-        #     user_input_2 = Model_Input(gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech).run()        
-        #     prediction_model_2 = UNEMPLOYMENTMODEL('./model/gradientboost.joblib',user_input_2)
-        #     st.markdown(f'**:violet[{prediction_model_2.predict()}]**')
-        #     st.markdown(f'Chance of Being Employed: **:violet[{prediction_model_2.proba()*100:.2f}%]**')
-        #     proba_2 = prediction_model_2.proba()
-        #     print('anything')
-        #     if user_input_1 != user_input_2:
-        #         print('diff inputs')
-        #         if proba_2 >= proba_1:
-        #             st.markdown(f'Increased Chances by: **:violet[{(proba_2-proba_1)*100:.2f}%]**')
-        #         else:
-        #             st.markdown(f'Decreased Chances by: **:violet[{(proba_2-proba_1)*100:.2f}%]**')
-        #     st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_2.recommend_skills()}]**')
 
+        with open('cache.txt', 'w') as file:
+            file.write(str(gender) + "\n")
+            file.write(str(age) + "\n")
+            file.write(str(accessibility) + "\n")
+            file.write(str(employment) + "\n")
+            file.write(str(mental_health) + "\n")
+            file.write(str(main_branch) + "\n")
+            file.write(str(years_code) + "\n")
+            file.write(str(years_code_pro) + "\n")
+            file.write(str(prev_salary) + "\n")
+            file.write(str(education) + "\n")
+            file.write(str(tech))
+            file.close()
+            
+    content = ''
+    with open('cache.txt', 'r') as file:
+        content = file.read()
+        file.close()
+    
+
+<<<<<<< Updated upstream
+    st.subheader('Add skills to see how your employability chance changes.')
+    if content is not '' and st.button("UPDATE"):    
+=======
+    if content != '' and st.button("UPDATE"):    
+>>>>>>> Stashed changes
+        list_info = []    
+        with open('cache.txt', 'r') as file:
+            while True:
+                line = file.readline()
+                if not line:
+                    break
+                list_info.append(line)
+            if len(list_info) < 11:
+                list_info.append('')
+            file.close()
+
+        user_input_1 = Model_Input(int(list_info[0]),int(list_info[1]),int(list_info[2]),
+                                    int(list_info[3]),int(list_info[4]),int(list_info[5]),
+                                    int(list_info[6]),int(list_info[7]),int(list_info[8]),list_info[9],list_info[10]).run()        
+        prediction_model_1 = UNEMPLOYMENTMODEL('./model/gradientboost.joblib',user_input_1)
+        prediction_model_1.proba()
+        user_input_2 = Model_Input(gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech).run()     
+
+
+        st.markdown(f'**:violet[{prediction_model_1.improvement_prediction(user_input_2)}]**')
+        st.markdown(f'Recommended Skills to Improve Employability: **:violet[{prediction_model_1.improvement_recommend_skills()}]**')
+
+        

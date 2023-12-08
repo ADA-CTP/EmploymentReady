@@ -105,6 +105,7 @@ class Model_Input:
 class UNEMPLOYMENTMODEL:
     def __init__(self,path,input):
         self.curr_score = 0
+        self.curr_input = input
         self.input = input
         self.model = load(path)
 
@@ -120,13 +121,6 @@ class UNEMPLOYMENTMODEL:
         self.curr_score = proba_score
         return proba_score
 
-    def improvement_prediction(self,new_input):
-        new_score = self.model.predict_proba(new_input)[0][1]
-        if new_score > self.curr_score:
-            return f"Your chances of being employed is {new_score*100:.2f}%, and have improved by {(new_score - self.curr_score)*100:.2f}%!"
-        else:
-            return f"Your chances of being employed is {new_score*100:.2f}%, and have decreased by {(new_score - self.curr_score)*100:.2f}%!"
-        
     def feature_importances(self):
         important = self.model.feature_names_in_
         return important
@@ -139,13 +133,31 @@ class UNEMPLOYMENTMODEL:
         recommended_skills.sort(key=lambda x: feature_map[x],reverse=True)
         return recommended_skills[:5]
         
-
+    def improvement_prediction(self,new_input):
+        self.curr_input = new_input        
+        new_score = self.model.predict_proba(new_input)[0][1]
+        if new_score > self.curr_score:
+            return f"Your chances of being employed is {new_score*100:.2f}%, and have improved by {(new_score - self.curr_score)*100:.2f}%!"
+        else:
+            return f"Your chances of being employed is {new_score*100:.2f}%, and have decreased by {(new_score - self.curr_score)*100:.2f}%!"
+    
+    def improvement_recommend_skills(self):
+        input_skills = set(self.curr_input.columns[self.curr_input.eq(1).any()])
+        important_skills = set(self.feature_importances())
+        
+        feature_map = {k:v for k,v in zip(self.model.feature_names_in_,self.model.feature_importances_)}
+        recommended_skills = list(important_skills - input_skills)
+        recommended_skills.sort(key=lambda x: feature_map[x],reverse=True)
+        if len(recommended_skills) < 5:
+            return "recommendation not available"
+        return recommended_skills[:5]
+    
 # m_input = Model_Input(1,1,1,1,1,1,9999999,9999999,9999999,"edlevel_other","node.js,typescript,c#").run()
-# n_input = Model_Input(1,1,1,1,1,1,9999999,9999999,9999999,"edlevel_other","node.js").run()
+# n_input = Model_Input(1,1,1,1,1,1,9999999,9999999,9999999,"edlevel_other","typescript,microsoft sql server,c#,jquery,mongodb").run()
 # model = UNEMPLOYMENTMODEL('./model/gradientboost.joblib',m_input)
-# print(model.predict())
+# # print(model.predict())
 # print("Chances of being employed:",model.proba())
 # print(model.improvement_prediction(n_input))
-# print(model.recommend_skills())
+# print(model.improvement_recommend_skills())
 
 
