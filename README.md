@@ -2,6 +2,7 @@
 EmploymentReady contains a predictive model that predicts your employability for a software developer role based on your current skill set and provides recommendations of skills you can learn to increase your employability rating.
 
 ![ER1](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/5d7d4392-91f1-4860-823d-428f9fbe38e2)
+![ER2](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/9e3afbed-7a44-4646-802e-6300ac92a877)
 
 <details><summary>Table Of Contents</summary>
 
@@ -38,8 +39,24 @@ ___
 
 ### Demo
 ___
+**Navigate Between Different Pages** <br>
+![ER3](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/356aaede-e582-41a2-ad90-ad670a0f5bd1) <br>
+
+**User Input Section** <br>
+![ER4](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/11038a27-09db-4ab3-b7e9-30b8cb303f4b)
+![ER7](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/7ad4921b-bee9-4f0e-9c8e-3d914ecf235c)
+![ER5](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/dbc57a05-fd93-4241-81e0-458fa2215a61)
+![ER6](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/60bd6e79-ce37-4379-a67f-97c21086a5bb) <br>
+
+**Model Prediction** <br>
 ![ER1](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/5d7d4392-91f1-4860-823d-428f9fbe38e2)
-![ER2](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/9e3afbed-7a44-4646-802e-6300ac92a877)
+![ER2](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/9e3afbed-7a44-4646-802e-6300ac92a877) <br>
+
+**Raw Dataset** <br>
+![ER8](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/636be20c-89b5-4faf-8659-eab2831b0f96) <br>
+
+**Clean Dataset** <br>
+![ER9](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/8d2bb197-3464-4dd1-918e-81f52939f0cc) <br>
 
 ### Future Aspirations
 ___
@@ -57,11 +74,11 @@ Our development team consists of:
 
 ##### Introductions
 My name is Anthony, I study Computer Science at the City College of New York and I’m expected to graduate in Spring of 2024. <br>
-Email: | [LinkedIn] | [Github]
+Email: Anthonyzhu137@gmail.com | [LinkedIn](https://www.linkedin.com/in/anthony-zhu-cs/) | [Github](https://github.com/azhu000)
 
 My name is Daphne Tang. I am a Senior at City College of New York studying Computer Science. <br>
-Email: daphnetang2002@gmail.com | [LinkedIn](https://www.linkedin.com/in/daphnetang-cs/) | [Github](https://github.com/DTang127)
+Email: Daphnetang2002@gmail.com | [LinkedIn](https://www.linkedin.com/in/daphnetang-cs/) | [Github](https://github.com/DTang127)
  
 My name is Andy Zheng. I’m a senior studying computer science at the City College of New York. <br>
-Email: | [LinkedIn] | [Github]
+Email: Andyzheny@gmail.com | [LinkedIn](https://www.linkedin.com/in/andyzheng7/) | [Github](https://github.com/Falselysium)
 
