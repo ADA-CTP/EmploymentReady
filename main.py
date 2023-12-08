@@ -107,53 +107,57 @@ elif app_mode == 'Prediction Model':
     st.sidebar.header("Input your information here:")    
     
     gender_dict = {"Male":0,"Female":1,"Non-Binary":2} 
-    gender=st.sidebar.radio('Gender',tuple(gender_dict.keys())) 
-    st.markdown(f'Gender: **:blue[{gender}]**')
-    gender = gender_dict[gender]
+    # gender=st.sidebar.radio('Gender',tuple(gender_dict.keys())) 
+    # st.markdown(f'Gender: **:blue[{gender}]**')
+    gender = gender_dict['Male']
 
     age_dict = {"Older than 35":0,"Younger than 35":1} 
-    age=st.sidebar.radio('Age',tuple(age_dict.keys())) 
-    st.markdown(f'Age: **:blue[{age}]**')
-    age = age_dict[age]
+    # age=st.sidebar.radio('Age',tuple(age_dict.keys())) 
+    # st.markdown(f'Age: **:blue[{age}]**')
+    age = age_dict['Younger than 35']
 
     accessibility_dict = {"No":0,"Yes":1} 
-    accessibility=st.sidebar.radio('Any disabilities?',tuple(accessibility_dict.keys())) 
-    st.markdown(f'Accessibility: **:blue[{accessibility}]**')
-    accessibility = accessibility_dict[accessibility]
+    # accessibility=st.sidebar.radio('Any disabilities?',tuple(accessibility_dict.keys())) 
+    # st.markdown(f'Accessibility: **:blue[{accessibility}]**')
+    accessibility = accessibility_dict['No']
 
     employment_dict = {"No":0,"Yes":1} 
-    employment=st.sidebar.radio('Current Employed?',tuple(employment_dict.keys())) 
-    st.markdown(f'Employment Status: **:blue[{employment}]**')
-    employment = employment_dict[employment]
+    # employment=st.sidebar.radio('Current Employed?',tuple(employment_dict.keys())) 
+    # st.markdown(f'Employment Status: **:blue[{employment}]**')
+    employment = employment_dict['No']
 
     mental_health_dict = {"No":0,"Yes":1} 
-    mental_health=st.sidebar.radio('Mental Health Issues?',tuple(mental_health_dict.keys())) 
-    st.markdown(f'Mental Health: **:blue[{mental_health}]**')
-    mental_health = mental_health_dict[mental_health]
+    # mental_health=st.sidebar.radio('Mental Health Issues?',tuple(mental_health_dict.keys())) 
+    # st.markdown(f'Mental Health: **:blue[{mental_health}]**')
+    mental_health = mental_health_dict['No']
 
     main_branch_dict = {"Non-Developer":0,"Developer":1} 
-    main_branch=st.sidebar.radio('Are you a Developer?',tuple(main_branch_dict.keys())) 
-    st.markdown(f'Developer: **:blue[{main_branch}]**')
-    main_branch = main_branch_dict[main_branch]
+    # main_branch=st.sidebar.radio('Are you a Developer?',tuple(main_branch_dict.keys())) 
+    # st.markdown(f'Developer: **:blue[{main_branch}]**')
+    main_branch = main_branch_dict['Developer']
 
-    years_code=st.sidebar. slider('Years of Coding?',0,50,0,)  
-    st.markdown(f'Years of Coding: **:blue[{years_code}]**')
+    # years_code=st.sidebar. slider('Years of Coding?',0,50,0,)  
+    years_code=0  
 
-    years_code_pro=st.sidebar.slider('Years of Coding Professionally?',0,50,0,)  
-    st.markdown(f'Years of Coding Professionally: **:blue[{years_code_pro}]**')
+    # st.markdown(f'Years of Coding: **:blue[{years_code}]**')
 
-    prev_salary=st.sidebar.number_input('Most Recent Annual Salary?',value=0,step=1)  
-    st.markdown(f'Most Recent Annual Salary: **:blue[{prev_salary}]**')
+    # years_code_pro=st.sidebar.slider('Years of Coding Professionally?',0,50,0,)  
+    years_code_pro=0
+    # st.markdown(f'Years of Coding Professionally: **:blue[{years_code_pro}]**')
+
+    # prev_salary=st.sidebar.number_input('Most Recent Annual Salary?',value=0,step=1)  
+    prev_salary=0
+    # st.markdown(f'Most Recent Annual Salary: **:blue[{prev_salary}]**')
 
     ed_level_dict = {'No Higher Education':'edlevel_nohighered','Undergraduate':'edlevel_other','Master':'edlevel_master','PHD':'edlevel_phd','Other':'edlevel_other'} 
-    education=st.sidebar.radio('Highest Employment Level?',tuple(ed_level_dict.keys())) 
-    st.markdown(f'Highest Education Level: **:blue[{education}]**')
-    education = ed_level_dict[education]
+    # education=st.sidebar.radio('Highest Employment Level?',tuple(ed_level_dict.keys())) 
+    # st.markdown(f'Highest Education Level: **:blue[{education}]**')
+    education = ed_level_dict['No Higher Education']
 
     tech=st.sidebar.text_area('Technologies & Coding Languages (please separate with commas thank you):')
     st.markdown(f'Technologies & Coding Languages: **:blue[{tech}]**')
 
-    st.subheader('Please confirm the information above before using our prediction model.')
+    # st.subheader('Please confirm the information above before using our prediction model.')
     # feature_list = [gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech]
     # st.write(feature_list)
 
