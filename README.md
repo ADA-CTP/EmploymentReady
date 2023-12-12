@@ -1,5 +1,5 @@
 # EmploymentReady
-EmploymentReady contains a predictive model that predicts your employability for a software developer role based on your current skill set and provides recommendations of skills you can learn to increase your employability rating.
+[EmploymentReady](https://employmentready.streamlit.app/) contains a predictive model that predicts your employability for a software developer role based on your current skill set and provides recommendations of skills you can learn to increase your employability rating.
 
 ![ER_model_prediction](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/08fd635f-5a91-4d4a-ae07-dc1e91f5339c)
 ![ER_update](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/1733c71b-81ec-4f92-97a1-2c0e85523b6f)
