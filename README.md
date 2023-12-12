@@ -1,8 +1,8 @@
 # EmploymentReady
 EmploymentReady contains a predictive model that predicts your employability for a software developer role based on your current skill set and provides recommendations of skills you can learn to increase your employability rating.
 
-![ER1](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/5d7d4392-91f1-4860-823d-428f9fbe38e2)
-![ER2](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/9e3afbed-7a44-4646-802e-6300ac92a877)
+![ER_model_prediction](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/08fd635f-5a91-4d4a-ae07-dc1e91f5339c)
+![ER_update](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/1733c71b-81ec-4f92-97a1-2c0e85523b6f)
 
 <details><summary>Table Of Contents</summary>
 
@@ -34,26 +34,26 @@ EmploymentReady can predict the possibility of employment given some information
 *  Visual Studio Code & Python (code for Streamlit application and our model)
 *  Git & Github (to share code and collaborate)
 *  Python Libraries: streamlit, pandas, numpy, seaborn, plotly.express, matplotlib.pyploy, joblib, sklearn.metrics, sklearn.ensemble, sklearn.model_selction
+*  [70k+ Job Applicants Dataset from Kaggle](https://www.kaggle.com/datasets/ayushtankha/70k-job-applicants-data-human-resource/data)
 
 ## Demo
 ### Navigate Between Different Pages
-![ER3](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/356aaede-e582-41a2-ad90-ad670a0f5bd1) <br>
+![ER_Nagivate](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/980a7848-e4d3-4a5b-b4b5-9157b418bcdb) <br>
 
 ### User Input Section
-![ER4](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/11038a27-09db-4ab3-b7e9-30b8cb303f4b)
-![ER7](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/7ad4921b-bee9-4f0e-9c8e-3d914ecf235c)
-![ER5](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/dbc57a05-fd93-4241-81e0-458fa2215a61)
-![ER6](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/60bd6e79-ce37-4379-a67f-97c21086a5bb) <br>
+![ER_user_input](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/c2713cac-3f68-43e7-9769-19ec8a3ae9eb) <br>
 
 ### Model Prediction
-![ER1](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/5d7d4392-91f1-4860-823d-428f9fbe38e2)
-![ER2](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/9e3afbed-7a44-4646-802e-6300ac92a877) <br>
+![ER_model_prediction](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/08fd635f-5a91-4d4a-ae07-dc1e91f5339c) <br>
+
+### Update Function
+![ER_update](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/696bffec-91cf-48ec-9819-1b112bd75ff1)
 
 ### Raw Dataset
-![ER8](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/636be20c-89b5-4faf-8659-eab2831b0f96) <br>
+![ER_raw_dataset](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/6a2d2df1-540e-4d2a-85ca-c1294585b464) <br>
 
 ### Clean Dataset
-![ER9](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/8d2bb197-3464-4dd1-918e-81f52939f0cc) <br>
+![ER_clean_dataset](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/3ea595d0-783c-4b68-8204-12bf8179555f) <br>
 
 ## Future Aspirations
 *  Utilize NLP to read a resume document(pdf) and calculate the likelihood of a user to get a job
