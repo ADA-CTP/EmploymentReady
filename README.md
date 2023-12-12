@@ -17,12 +17,12 @@ EmploymentReady contains a predictive model that predicts your employability for
 
 ## Project Description
 ### Problem Statement
-Have you ever been rejected for a role? The tech job market is extremely competitive. With the copious amounts of technologies that are available in conjunction with other variables such as education and even location it might be difficult to understand the hireability of a candidate from the employer’s perspective or even understand what skills employers want to see in a candidate from an applicant's perspective. 
+Have you ever been rejected for a role? The tech job market is extremely competitive. With the copious amounts of technologies that are available in conjunction with other variables such as education and even location, it might be difficult to understand the employability of a candidate from the employer’s perspective or even understand what skills employers want to see in a candidate from an applicant's perspective. 
 
 ### Our Solution
 EmploymentReady can predict the possibility of employment given some information. We intend to help job applicants, like yourself, understand your employability and increase it with recommendations for skills. (Currently only for software developer roles) <br>
 
-**Predictive Modeling**: We utilized a 70k+ dataset of software developer job applicants to train and develop a predictive model that assess the employability of new applicants for software developer role based on their profile attributes and current skill set. Applicants can understand their employability for the role. Organizations can prioritize candidates more efficiently. <br>
+**Predictive Modeling**: We utilized a 70k+ dataset of software developer job applicants to train and develop a predictive model that assesses the employability of new applicants for software developer roles based on their current skill set. Applicants can understand their employability for the role. Organizations can prioritize candidates more efficiently. <br>
 
 **Feature Analysis**: By analyzing the dataset, our model shows the top skills that are most important for the software developer role. Applicants can prepare more efficiently for the qualifications of the role. Recruiters can gain insights into the key attributes and qualifications that contribute most significantly to a candidate's employability. This information can guide the development of effective job descriptions and candidate evaluation criteria.
 
@@ -30,7 +30,7 @@ EmploymentReady can predict the possibility of employment given some information
 ## Design Strategy
 *  Jupyter Notebook, Google Colab, Deepnote (Data Cleaning, Exploratory Data Analysis)
 *  Gradient Boosting Classifier Model (training and testing our predictive model)
-*  Streamlit (build application to accept user input and output prediction of user employability using our model)
+*  Streamlit (build an application to accept user input and output prediction of user employability using our model)
 *  Visual Studio Code & Python (code for Streamlit application and our model)
 *  Git & Github (to share code and collaborate)
 *  Python Libraries: streamlit, pandas, numpy, seaborn, plotly.express, matplotlib.pyploy, joblib, sklearn.metrics, sklearn.ensemble, sklearn.model_selction
@@ -56,7 +56,7 @@ EmploymentReady can predict the possibility of employment given some information
 ![ER_clean_dataset](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/3ea595d0-783c-4b68-8204-12bf8179555f) <br>
 
 ## Future Aspirations
-*  Utilize NLP to read a resume document(pdf) and calculate the likelihood of a user to get a job
+*  Utilize natural language processing to read a resume document(pdf) and calculate the likelihood of a user to get a job
 *  Add predictive modeling and calculate employability for other tech roles (currently it is only for software engineers)
 *  Candidates may contribute to the dataset by adding data points in which we can further improve our predictions 
 
