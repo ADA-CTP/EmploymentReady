@@ -41,13 +41,13 @@ EmploymentReady can predict the possibility of employment given some information
 ![ER_Nagivate](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/980a7848-e4d3-4a5b-b4b5-9157b418bcdb) <br>
 
 ### User Input Section
-![ER_user_input](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/c2713cac-3f68-43e7-9769-19ec8a3ae9eb) <br>
+![ER_user_input](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/e6f4bc83-fe4f-44a1-8e09-90bc64cdd75a) <br>
 
 ### Model Prediction
 ![ER_model_prediction](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/08fd635f-5a91-4d4a-ae07-dc1e91f5339c) <br>
 
 ### Update Function
-![ER_update](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/696bffec-91cf-48ec-9819-1b112bd75ff1)
+![ER_update](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/696bffec-91cf-48ec-9819-1b112bd75ff1) <br>
 
 ### Raw Dataset
 ![ER_raw_dataset](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/6a2d2df1-540e-4d2a-85ca-c1294585b464) <br>
