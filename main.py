@@ -30,8 +30,8 @@ for column in matrix.columns:
 sorted_dict = pd.DataFrame.from_dict([dict(reversed(sorted(ones_count.items(), key=lambda item: item[1])))])
 sorted_dict = sorted_dict.melt()
 
-
-app_mode = st.sidebar.selectbox('Select Page',['Job Applicants Dataset', 'Visuals', 'Prediction Model']) #two pages
+# sidebar
+app_mode = st.selectbox('Select Page',['Job Applicants Dataset', 'Visuals', 'Prediction Model']) #two pages
 
 if app_mode == 'Job Applicants Dataset':
     st.checkbox("Use container width", value=False, key="use_container_width")
@@ -103,13 +103,13 @@ elif app_mode == 'Visuals':
     st.plotly_chart(fig4)
 
 elif app_mode == 'Prediction Model':   
-    st.subheader('Please enter all necessary informations to calculate your employability as a Software Developer!')    
-    st.sidebar.header("Input your information here:")    
+    st.header('Please enter the necessary information to calculate your employability as a Software Developer!')    
+    st.subheader("Input your information here:")    
     
     gender_dict = {"Male":0,"Female":1,"Non-Binary":2} 
     # gender=st.sidebar.radio('Gender',tuple(gender_dict.keys())) 
     # st.markdown(f'Gender: **:blue[{gender}]**')
-    gender = gender_dict['Male']
+    gender = gender_dict["Male"]
 
     age_dict = {"Older than 35":0,"Younger than 35":1} 
     # age=st.sidebar.radio('Age',tuple(age_dict.keys())) 
@@ -134,7 +134,7 @@ elif app_mode == 'Prediction Model':
     main_branch_dict = {"Non-Developer":0,"Developer":1} 
     # main_branch=st.sidebar.radio('Are you a Developer?',tuple(main_branch_dict.keys())) 
     # st.markdown(f'Developer: **:blue[{main_branch}]**')
-    main_branch = main_branch_dict['Developer']
+    main_branch = main_branch_dict["Developer"]
 
     # years_code=st.sidebar. slider('Years of Coding?',0,50,0,)  
     years_code=0  
@@ -154,8 +154,8 @@ elif app_mode == 'Prediction Model':
     # st.markdown(f'Highest Education Level: **:blue[{education}]**')
     education = ed_level_dict['No Higher Education']
 
-    tech=st.sidebar.text_area('Technologies & Coding Languages (please separate with commas thank you):')
-    st.markdown(f'Technologies & Coding Languages: **:blue[{tech}]**')
+    tech=st.text_area('Technologies & Coding Languages (please separate with commas thank you):')
+    st.markdown(f'Your Technologies & Coding Languages: **:blue[{tech}]**')
 
     # st.subheader('Please confirm the information above before using our prediction model.')
     # feature_list = [gender,age,accessibility,employment,mental_health,main_branch,years_code,years_code_pro,prev_salary,education,tech]
