@@ -30,7 +30,6 @@ for column in matrix.columns:
 sorted_dict = pd.DataFrame.from_dict([dict(reversed(sorted(ones_count.items(), key=lambda item: item[1])))])
 sorted_dict = sorted_dict.melt()
 
-# sidebar
 app_mode = st.selectbox('Select Page',['Job Applicants Dataset', 'Visuals', 'Prediction Model']) #two pages
 
 if app_mode == 'Job Applicants Dataset':
