@@ -30,7 +30,7 @@ for column in matrix.columns:
 sorted_dict = pd.DataFrame.from_dict([dict(reversed(sorted(ones_count.items(), key=lambda item: item[1])))])
 sorted_dict = sorted_dict.melt()
 
-app_mode = st.selectbox('Select Page',['Job Applicants Dataset', 'Visuals', 'Prediction Model']) #two pages
+app_mode = st.selectbox('Select Page',['Prediction Model', 'Visuals', 'Job Applicants Dataset']) #two pages
 
 if app_mode == 'Job Applicants Dataset':
     st.checkbox("Use container width", value=False, key="use_container_width")
