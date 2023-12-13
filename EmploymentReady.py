@@ -62,7 +62,7 @@ elif app_mode == 'Visuals':
     gender_counts['Gender'][1]= 'Female'
     gender_counts['Gender'][2]= 'Non-Binary'
 
-    fig1 = px.pie(gender_counts, names='Gender', values='Number of Applicants', title='Gender Distribution')
+    fig1 = px.pie(gender_counts, names='Gender', values='Number of Applicants', title='Gender Distribution',color_discrete_sequence=['#FF9999', '#66B2FF', '#99FF99', '#FFCC99'])
 
     # Display the Plotly figure in Streamlit
     st.plotly_chart(fig1)
@@ -76,7 +76,7 @@ elif app_mode == 'Visuals':
     dev_or_not['Developer?'][1] = 'Non-Developer'
 
 
-    fig2 = px.pie(dev_or_not, names='Developer?', values='Number of Applicants', title='Developer Distribution')
+    fig2 = px.pie(dev_or_not, names='Developer?', values='Number of Applicants', title='Developer Distribution',color_discrete_sequence=['#FF9999', '#66B2FF', '#99FF99', '#FFCC99'])
 
     # Display the Plotly figure in Streamlit
     st.plotly_chart(fig2)
@@ -85,8 +85,9 @@ elif app_mode == 'Visuals':
 
     education = df['EdLevel'].value_counts().reset_index()
     # education.columns ["Education Level", 'Number of Applicants']
+    st.dataframe(education)
 
-    fig3 = px.pie(education, names='EdLevel', values='count', title='Education Distribution')
+    fig3 = px.pie(education, names='index', values='EdLevel', title='Education Distribution')
 
     # Display the Plotly figure in Streamlit
     st.plotly_chart(fig3)
@@ -96,7 +97,7 @@ elif app_mode == 'Visuals':
     technologies = sorted_dict.copy()
     technologies.columns = ['Technologies/Skills', 'Number of Applicants with Skill']
 
-    fig4 = px.bar(technologies, x='Technologies/Skills', y='Number of Applicants with Skill', title='Technology/Skill Distribution')
+    fig4 = px.bar(technologies, x='Technologies/Skills', y='Number of Applicants with Skill', title='Technology/Skill Distribution',color="Technologies/Skills")
 
     # Display the Plotly figure in Streamlit
     st.plotly_chart(fig4)
