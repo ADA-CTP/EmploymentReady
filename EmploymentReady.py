@@ -6,17 +6,17 @@ import plotly.express as px
 
 df = pd.read_csv("jobapplicants.csv")
 sns.set()
-df = df.rename(columns={'Unnamed: 0' : 'id', 'Age':'<35'})
-df.replace(('Yes','No'), (1,0), inplace=True)
+df_clean = df.rename(columns={'Unnamed: 0' : 'id', 'Age':'<35'})
+df_clean.replace(('Yes','No'), (1,0), inplace=True)
 
 # Man = 0, Woman = 1, NonBinary = 2
-df['Gender'].replace(('Man', 'Woman', 'NonBinary'),(0,1,2),inplace=True)
+df_clean['Gender'].replace(('Man', 'Woman', 'NonBinary'),(0,1,2),inplace=True)
 
 # NotDev = 0, Dev = 1
-df['MainBranch'].replace(('NotDev','Dev'),(0,1), inplace=True)
+df_clean['MainBranch'].replace(('NotDev','Dev'),(0,1), inplace=True)
 
 # >35 = 0, <35 = 1
-df['<35'].replace(('>35','<35'), (0,1),inplace=True)
+df_clean['<35'].replace(('>35','<35'), (0,1),inplace=True)
 
 hold = df.copy()
 hold = pd.get_dummies(hold,columns=['EdLevel'],drop_first=False)
