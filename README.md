@@ -50,10 +50,10 @@ EmploymentReady can predict the possibility of employment given some information
 ![ER_update](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/696bffec-91cf-48ec-9819-1b112bd75ff1) <br>
 
 ### Raw Dataset
-![ER_raw_dataset](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/6a2d2df1-540e-4d2a-85ca-c1294585b464) <br>
+![ER_raw_dataset](https://github.com/ADA-CTP/EmploymentReady/assets/93285387/e39a3fad-7ed7-4e0e-ac73-09789e4c7c39) <br>
 
 ### Clean Dataset
-![ER_clean_dataset](https://github.com/ADA-Sleep-Analysis/EmploymentReady/assets/93285387/3ea595d0-783c-4b68-8204-12bf8179555f) <br>
+![ER_clean_dataset](https://github.com/ADA-CTP/EmploymentReady/assets/93285387/ce8727ac-707a-4b98-8cb7-d9eedc5bc175) <br>
 
 ## Future Aspirations
 *  Utilize natural language processing to read a resume document(pdf) and calculate the likelihood of a user to get a job
